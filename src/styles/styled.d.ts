@@ -8,7 +8,7 @@ declare module 'styled-components' {
     appLogo: string;
     appSkeletonFrom: string;
     appSkeletonTo: string;
-    button: {
+    buttons: {
       alert: string;
       alertColor: string;
       alertHover: string;
@@ -32,7 +32,7 @@ declare module 'styled-components' {
       disabled: string;
       disabledBorderColor: string;
       disabledColor: string;
-      placeholder: string;
+      placeholderColor: string;
     };
     typographies: {
       error: string;
