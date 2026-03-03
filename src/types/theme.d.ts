@@ -5,7 +5,7 @@ export interface Theme {
   appLogo: string;
   appSkeletonFrom: string;
   appSkeletonTo: string;
-  button: {
+  buttons: {
     alert: string;
     alertColor: string;
     alertHover: string;
@@ -29,7 +29,7 @@ export interface Theme {
     disabled: string;
     disabledBorderColor: string;
     disabledColor: string;
-    placeholder: string;
+    placeholderColor: string;
   };
   typographies: {
     error: string;
