@@ -1,5 +1,5 @@
 /**
- * Coonvert Pixels to rem
+ * Convert Pixels to rem
  * @param pixels - The pixel value to be converted.
  * @returns The converted rem value.
  */
