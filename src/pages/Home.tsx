@@ -11,16 +11,19 @@ import { currencyConverter } from '@/utils';
 function Home() {
   const mockListData = [
     {
+      id: 1,
       avatar: '/dnc-avatar.svg',
       name: 'Nome sobrenome 1',
       subtitle: currencyConverter(4234.54),
     },
     {
+      id: 2,
       avatar: '/dnc-avatar.svg',
       name: 'Nome sobrenome 2',
       subtitle: currencyConverter(3334.14),
     },
     {
+      id: 3,
       avatar: '/dnc-avatar.svg',
       name: 'Nome sobrenome 3',
       subtitle: currencyConverter(2264.74),
@@ -31,22 +34,23 @@ function Home() {
     headers: ['Name', 'Email', 'Actions'],
     rows: [
       [
-        <span>Nome 1</span>,
-        <span>nome1@email.com</span>,
-        <button>ACTION</button>,
+        <span key="name1">Nome 1</span>,
+        <span key="email1">nome1@email.com</span>,
+        <button key="action1">ACTION</button>,
       ],
       [
-        <span>Nome 2</span>,
-        <span>nome2@email.com</span>,
-        <button>ACTION</button>,
+        <span key="name2">Nome 2</span>,
+        <span key="email2">nome2@email.com</span>,
+        <button key="action2">ACTION</button>,
       ],
       [
-        <span>Nome 3</span>,
-        <span>nome3@email.com</span>,
-        <button>ACTION</button>,
+        <span key="name3">Nome 3</span>,
+        <span key="email3">nome3@email.com</span>,
+        <button key="action3">ACTION</button>,
       ],
     ],
   };
+
   return (
     <>
       <Header />
