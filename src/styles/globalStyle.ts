@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import type { DefaultTheme } from 'styled-components';
+import { pxToRem } from '@/utils';
 
 export const GlobalStyle = createGlobalStyle<{ theme?: DefaultTheme }>`
     html, body {
@@ -12,5 +13,11 @@ export const GlobalStyle = createGlobalStyle<{ theme?: DefaultTheme }>`
     h1, h2, p, li, ul, figure {
         margin: 0;
         padding: 0;
+    }
+    .mb-1 {
+        margin-bottom: ${pxToRem(16)}
+    }
+    .mb-2 {
+        margin-bottom: ${pxToRem(32)}
     }
 `;
