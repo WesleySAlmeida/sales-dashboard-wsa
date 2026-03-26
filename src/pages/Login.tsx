@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
 
-//COMPONENTS
+// COMPONENTS
 import { Box, Container, Grid } from '@mui/material';
 import {
   BannerImage,
@@ -14,13 +14,13 @@ import {
   StyledP,
 } from '@/components';
 
-//HOOKS
+// HOOKS
 import { useFormValidation, usePost } from '@/hooks';
 
-//UTILS
+// UTILS
 import { jwtExpirationDateConverter, pxToRem } from '@/utils';
 
-//TYPES
+// TYPES
 import type {
   DecodedJWT,
   MessageProps,
@@ -43,10 +43,7 @@ function Login() {
     if (!error) return { msg: '', type: 'success' };
     switch (error) {
       case 401:
-        return {
-          msg: 'Email e/ou senha inválido',
-          type: 'error',
-        };
+        return { msg: 'Email e/ou senha inválido', type: 'error' };
       default:
         return {
           msg: 'Não foi possivel realizar esta operação. Entre em contato com nosso suporte',
@@ -75,57 +72,58 @@ function Login() {
   }, [data, navigate]);
 
   return (
-    <>
-      <Box>
-        <Grid container>
-          <Grid
-            size={{ xs: 12, sm: 6 }}
-            sx={{
-              alignItems: 'center',
-              display: 'flex',
-              height: '100vh',
-            }}
-          >
-            <Container maxWidth="sm">
-              <Box sx={{ marginBottom: pxToRem(24) }}>
-                <Logo height={41} width={100} />
-              </Box>
-              <Box sx={{ marginBottom: pxToRem(24) }}>
-                <StyledH1>Bem-vindo</StyledH1>
-                <StyledP>Digite sua senha e email para logar</StyledP>
-              </Box>
-              <FormComponent
-                inputs={inputs.map((input, index) => ({
-                  type: input.type,
-                  placeholder: input.placeholder,
-                  value: formValues[index] || '',
-                  onChange: (e: ChangeEvent<HTMLInputElement>) =>
-                    handleChange(index, (e.target as HTMLInputElement).value),
-                }))}
-                buttons={[
-                  {
-                    className: 'primary',
-                    disabled: !formValid || loading,
-                    type: 'submit',
-                    onClick: handleSubmit,
-                    children: loading ? 'Aguarde...' : 'Login',
-                  },
-                ]}
-                message={handleMessage()}
-              />
-            </Container>
-          </Grid>
-          <Grid
-            size={{ sm: 6 }}
-            sx={{
-              display: { xs: 'none', sm: 'block' },
-            }}
-          >
-            <BannerImage />
-          </Grid>
+    <Box>
+      <Grid container>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          sx={{
+            alignItems: 'center',
+            display: 'flex',
+            height: '100vh',
+          }}
+        >
+          <Container maxWidth="sm">
+            <Box sx={{ marginBottom: pxToRem(24) }}>
+              <Logo height={41} width={100} />
+            </Box>
+            <Box sx={{ marginBottom: pxToRem(24) }}>
+              <StyledH1>Bem-vindo</StyledH1>
+              <StyledP>Digite sua senha e email para logar</StyledP>
+            </Box>
+            <FormComponent
+              inputs={inputs.map((input, index) => ({
+                type: input.type,
+                placeholder: input.placeholder,
+                value: formValues[index] || '',
+                onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                  handleChange(index, (e.target as HTMLInputElement).value),
+              }))}
+              buttons={[
+                {
+                  className: 'primary',
+                  disabled: !formValid || loading,
+                  type: 'submit',
+                  onClick: handleSubmit,
+                  children: loading ? 'Aguarde...' : 'Login',
+                },
+              ]}
+              message={handleMessage()}
+            />
+          </Container>
         </Grid>
-      </Box>
-    </>
+        <Grid
+          item
+          sm={6}
+          sx={{
+            display: { xs: 'none', sm: 'block' },
+          }}
+        >
+          <BannerImage />
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 
