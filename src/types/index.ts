@@ -7,3 +7,6 @@ export * from './formComponent';
 export * from './loginData';
 export * from './theme';
 export * from './typographies';
+export * from './highlightsData';
+export * from './newsData';
+export * from './starsData';
