@@ -113,7 +113,6 @@ export const useDelete = <T>(endpoint: string) => {
   const deleteData = async (config?: AxiosRequestConfig) => {
     setData(null);
     setLoading(true);
-    setError(null);
 
     try {
       const response = await axioInstance({

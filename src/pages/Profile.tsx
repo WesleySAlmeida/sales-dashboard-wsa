@@ -1,5 +1,6 @@
 import { useContext, type ChangeEvent, useEffect, useState } from 'react';
 import { AppThemeContext } from '@/contexts/AppThemeContext';
+import Cookies from 'js-cookie';
 
 // COMPONENTS
 import {
@@ -12,7 +13,7 @@ import {
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 
-// HOOOK
+// HOOKS
 import { useFormValidation, useGet, useDelete, usePut } from '@/hooks';
 
 // SERVICES
@@ -34,6 +35,7 @@ function Profile() {
     type: 'success',
     msg: '',
   });
+
   const clearMessage = () => {
     setTimeout(() => {
       setUpdateMessage({
@@ -42,6 +44,7 @@ function Profile() {
       });
     }, 3000);
   };
+
   const {
     data: profileData,
     loading: profileLoading,
@@ -54,6 +57,10 @@ function Profile() {
     loading: profileUpdateLoading,
     error: profileUpdateError,
   } = usePut<ProfileEditableData>('profile/update');
+
+  // ✅ só desestruturamos o que realmente usamos
+  const { deleteData: profileDeleteData, loading: profileDeleteLoading } =
+    useDelete('profile/delete');
 
   useEffect(() => {
     if (profileData) {
@@ -71,6 +78,7 @@ function Profile() {
   ];
 
   const { formValues, formValid, handleChange } = useFormValidation(inputs);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await profilePutData({
@@ -78,8 +86,24 @@ function Profile() {
       phone: String(formValues[2]),
     });
   };
+
   const handleDelete = async () => {
-    confirm('WIP...');
+    if (
+      confirm(
+        'Tem certeza que deseja excluir sua conta? Se sim, certifique-se de deletar os seus leads antes'
+      )
+    ) {
+      try {
+        await profileDeleteData();
+        alert('perfil deletado com sucesso!');
+        Cookies.remove('Authorization');
+        window.location.href = '/';
+      } catch (e) {
+        alert(
+          'Não foi possivel realizar esta operação. Entre em contato com nosso suporte'
+        );
+      }
+    }
   };
 
   useEffect(() => {
@@ -136,11 +160,15 @@ function Profile() {
                         },
                         {
                           className: 'alert',
+                          disabled: profileDeleteLoading,
                           type: 'button',
                           onClick: handleDelete,
-                          children: 'Excluir minha conta',
+                          children: profileDeleteLoading
+                            ? 'Aguarde...'
+                            : 'Excluir minha conta',
                         },
                       ]}
+                      message={updateMessage} // ✅ agora reconhecido
                     />
                   </>
                 )}
@@ -154,7 +182,7 @@ function Profile() {
                 className="primary mb-1"
                 onClick={themeContext?.toggleTheme}
               >
-                Trocar para tema {''}
+                Trocar para tema{' '}
                 {themeContext?.appTheme === 'light' ? 'escuro' : 'claro'}
               </StyledButton>
               <StyledButton className="alert" onClick={logout}>
