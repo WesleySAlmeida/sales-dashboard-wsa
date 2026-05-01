@@ -22,13 +22,13 @@ import type { RootState } from '@/redux';
 import { setMessage, setProfileData } from '@/redux/slices/createProfile';
 
 //TYPES
-import type { InputProps } from '@/types';
+import type { CreateProfileData, InputProps } from '@/types';
 
 function Registration() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { email } = useSelector((state: RootState) => state.createProfile);
-  const { data, loading, error, postData } = usePost<string, createProfileData>(
+  const { data, loading, error, postData } = usePost<string, CreateProfileData>(
     'profile/create'
   );
 

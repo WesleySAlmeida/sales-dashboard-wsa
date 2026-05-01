@@ -1,4 +1,4 @@
-import { use, useEffect } from 'react';
+import { useEffect } from 'react';
 import type { ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
@@ -37,6 +37,7 @@ function Login() {
   const { email, message } = useSelector(
     (state: RootState) => state.createProfile
   );
+
   const inputs = [
     { type: 'email', placeholder: 'Email' },
     { type: 'password', placeholder: 'Senha' },
