@@ -1,0 +1,11 @@
+import { jsx as _jsx } from "react/jsx-runtime";
+import { render } from '@testing-library/react';
+import 'jest-styled-components';
+import { BannerImage } from '@/components/BannerImage';
+test('renders BannerImage component', () => {
+    const { container } = render(_jsx(BannerImage, {}));
+    expect(container.firstChild).toHaveStyleRule('background-image', "url('/login-image.svg')");
+    expect(container.firstChild).toHaveStyleRule('background-size', 'cover');
+    expect(container.firstChild).toHaveStyleRule('height', '100vh');
+    expect(container.firstChild).toHaveStyleRule('width', '50vw');
+});
