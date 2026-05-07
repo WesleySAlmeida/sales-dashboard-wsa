@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "jest ---coverage"
+    "test": "jest ---coverage",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "22": "^0.0.0",
@@ -50,7 +52,9 @@
     "@types/styled-components": "^5.1.36",
     "@vitejs/plugin-react": "^5.1.1",
     "babel-jest": "^30.3.0",
+    "cypress": "^15.14.2",
     "eslint": "^9.39.1",
+    "eslint-plugin-cypress": "^6.4.0",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
